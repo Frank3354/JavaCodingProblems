@@ -7,7 +7,8 @@ public class CharacterCounter {
     // This hashmap stores a character and the number its number of occurrences
     private final HashMap<Character, Integer> counterHashMap = new HashMap<>();
 
-    public void updateCounter(char character) {
+    private void updateCounter(char character) {
+        // .containsKey(key) returns false if a key is not found in the hashmap
         if(!counterHashMap.containsKey(character)) {
             // Character is not in hashmap, inserting new character with an occurrence of one
             counterHashMap.put(character, 1);
@@ -15,8 +16,6 @@ public class CharacterCounter {
         } else {
             // Character is in hashmap, updating counter
             counterHashMap.put(character, counterHashMap.get(character) + 1);
-
-
         }
     }
 
@@ -30,16 +29,21 @@ public class CharacterCounter {
         });
 
 
-    }// End of printDuplicateCharacters
-
-    public void resetCounter() {
-
-        counterHashMap.clear();
-
     }
 
+    public void resetCounter() {
+        // Clears hashmap of all its contents
+        counterHashMap.clear();
+    }
 
-
+    public void countCharacters(String line) {
+        char character;
+        int numChars = line.length();
+        for(int i = 0; i < numChars; i++) {
+            character = line.charAt(i);
+            updateCounter(character);
+        }
+    }
 
 
 } // End of class
