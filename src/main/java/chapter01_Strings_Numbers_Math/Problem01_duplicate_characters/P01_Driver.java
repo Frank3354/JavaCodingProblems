@@ -17,7 +17,7 @@ public class P01_Driver {
     public static void main(String[] args) {
         // Getting the current working directory
         String currentDirectory = System.getProperty("user.dir");
-        System.out.println("Current working directory is " + currentDirectory);
+
         CharacterCounter counter = new CharacterCounter();
 
         try {
@@ -27,25 +27,21 @@ public class P01_Driver {
 
             String line;
             int lineNum = 1;
-            char character;
+
 
             // Read and process line by line in opened file
             while((line=br.readLine()) != null) {
                 System.out.printf("Line number %d. Line contents: %s", lineNum++, line);
-                int numChars = line.length();
 
                 // Process all characters in line
-                for(int i = 0; i < numChars; i++) {
-                    character = line.charAt(i);
-                    counter.updateCounter(character);
-                }
-
+                counter.countCharacters(line);
                 counter.printDuplicateCharacters();
                 counter.resetCounter();
 
                 System.out.println("\n\n");
             }
 
+            // Closing file
             fr.close();
         } catch(IOException e) {
             e.printStackTrace();
